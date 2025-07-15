@@ -30,7 +30,7 @@ export function ChatInput({ onSend, className, disabled, ...props }: ChatInputPr
     <form
       {...props}
       onSubmit={handleSubmit}
-      className={cn('flex items-center gap-2 rounded-md pl-1 text-sm', className)}
+      className={cn('bg-background flex items-center gap-2 rounded-full p-1 text-sm', className)}
     >
       <input
         autoFocus
@@ -40,14 +40,14 @@ export function ChatInput({ onSend, className, disabled, ...props }: ChatInputPr
         disabled={disabled}
         placeholder="Type something..."
         onChange={(e) => setMessage(e.target.value)}
-        className="flex-1 focus:outline-none disabled:cursor-not-allowed disabled:opacity-50"
+        className="flex-1 bg-transparent pl-3 focus:outline-none disabled:cursor-not-allowed disabled:opacity-50"
       />
       <Button
         size="sm"
         type="submit"
         variant={isDisabled ? 'secondary' : 'primary'}
         disabled={isDisabled}
-        className="font-mono"
+        className="font-semibold"
       >
         SEND
       </Button>

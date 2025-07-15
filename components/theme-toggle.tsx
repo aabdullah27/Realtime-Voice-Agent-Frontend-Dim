@@ -6,17 +6,21 @@ import type { ThemeMode } from '@/lib/types';
 import { THEME_MEDIA_QUERY, THEME_STORAGE_KEY, cn } from '@/lib/utils';
 
 const THEME_SCRIPT = `
-  const doc = document.documentElement;
-  const theme = localStorage.getItem("${THEME_STORAGE_KEY}") ?? "system";
+  try {
+    const doc = document.documentElement;
+    const theme = localStorage.getItem("${THEME_STORAGE_KEY}") ?? "light";
 
-  if (theme === "system") {
-    if (window.matchMedia("${THEME_MEDIA_QUERY}").matches) {
-      doc.classList.add("dark");
+    if (theme === "system") {
+      if (window.matchMedia("${THEME_MEDIA_QUERY}").matches) {
+        doc.classList.add("dark");
+      } else {
+        doc.classList.add("light");
+      }
     } else {
-      doc.classList.add("light");
+      doc.classList.add(theme);
     }
-  } else {
-    doc.classList.add(theme);
+  } catch (e) {
+    console.error('Failed to apply theme from localStorage', e);
   }
 `
   .trim()

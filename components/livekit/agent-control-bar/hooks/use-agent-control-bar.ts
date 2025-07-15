@@ -102,13 +102,13 @@ export function useAgentControlBar(props: UseAgentControlBarProps = {}): UseAgen
   const handleToggleCamera = React.useCallback(
     async (enabled?: boolean) => {
       if (screenShareToggle.enabled) {
-        screenShareToggle.toggle(false);
+        await screenShareToggle.toggle(false);
       }
       await cameraToggle.toggle(enabled);
       // persist video input enabled preference
       saveVideoInputEnabled(!cameraToggle.enabled);
     },
-    [cameraToggle.enabled, screenShareToggle.enabled]
+    [cameraToggle, screenShareToggle, saveVideoInputEnabled]
   );
 
   const handleToggleMicrophone = React.useCallback(
@@ -117,17 +117,17 @@ export function useAgentControlBar(props: UseAgentControlBarProps = {}): UseAgen
       // persist audio input enabled preference
       saveAudioInputEnabled(!microphoneToggle.enabled);
     },
-    [microphoneToggle.enabled]
+    [microphoneToggle, saveAudioInputEnabled]
   );
 
   const handleToggleScreenShare = React.useCallback(
     async (enabled?: boolean) => {
       if (cameraToggle.enabled) {
-        cameraToggle.toggle(false);
+        await cameraToggle.toggle(false);
       }
       await screenShareToggle.toggle(enabled);
     },
-    [screenShareToggle.enabled, cameraToggle.enabled]
+    [cameraToggle, screenShareToggle]
   );
 
   return {

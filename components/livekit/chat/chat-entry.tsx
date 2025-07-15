@@ -31,15 +31,15 @@ export const ChatEntry = ({
     <li
       data-lk-message-origin={messageOrigin}
       title={time.toLocaleTimeString(locale, { timeStyle: 'full' })}
-      className={cn('group flex flex-col gap-0.5', className)}
+      className={cn('group flex flex-col gap-1', isUser ? 'items-end' : 'items-start', className)}
       {...props}
     >
       {(!hideTimestamp || !hideName || hasBeenEdited) && (
-        <span className="text-muted-foreground flex text-sm">
-          {!hideName && <strong className="mt-2">{name}</strong>}
+        <span className="text-muted-foreground flex items-center text-sm">
+          {!hideName && <strong>{name}</strong>}
 
           {!hideTimestamp && (
-            <span className="align-self-end ml-auto font-mono text-xs opacity-0 transition-opacity ease-linear group-hover:opacity-100">
+            <span className="ml-2 font-mono text-xs opacity-0 transition-opacity ease-linear group-hover:opacity-100">
               {hasBeenEdited && '*'}
               {time.toLocaleTimeString(locale, { timeStyle: 'short' })}
             </span>
@@ -47,7 +47,12 @@ export const ChatEntry = ({
         </span>
       )}
 
-      <span className={cn('max-w-4/5 rounded-[20px] p-2', isUser ? 'bg-muted ml-auto' : 'mr-auto')}>
+      <span
+        className={cn(
+          'max-w-4/5 rounded-2xl px-4 py-2',
+          isUser ? 'bg-primary text-primary-foreground' : 'bg-bg2 text-foreground'
+        )}
+      >
         {message}
       </span>
     </li>

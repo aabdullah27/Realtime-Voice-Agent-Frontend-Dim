@@ -1,4 +1,5 @@
 import { headers } from 'next/headers';
+import Image from 'next/image';
 import { getAppConfig, getOrigin } from '@/lib/utils';
 
 interface AppLayoutProps {
@@ -8,35 +9,20 @@ interface AppLayoutProps {
 export default async function AppLayout({ children }: AppLayoutProps) {
   const hdrs = await headers();
   const origin = getOrigin(hdrs);
-  const { companyName, logo, logoDark } = await getAppConfig(origin);
+  const { companyName, logo } = await getAppConfig(origin);
 
   return (
     <>
-      <header className="fixed top-0 left-0 z-50 hidden w-full flex-row justify-between p-6 md:flex">
-        <a
-          target="_blank"
-          rel="noopener noreferrer"
-          href="https://livekit.io"
-          className="scale-100 transition-transform duration-300 hover:scale-110"
-        >
-          <img src={logo} alt={`${companyName} Logo`} className="block size-6 dark:hidden" />
-          <img
-            src={logoDark ?? logo}
+      <header className="fixed top-0 left-0 z-50 hidden w-full flex-row items-center justify-start p-6 md:flex">
+        <div className="flex items-center">
+          <Image
+            src={logo}
             alt={`${companyName} Logo`}
-            className="hidden size-6 dark:block"
+            width={40}
+            height={40}
+            className="h-10 w-auto drop-shadow-lg"
           />
-        </a>
-        <span className="text-foreground font-mono text-xs font-bold tracking-wider uppercase">
-          Built with{' '}
-          <a
-            target="_blank"
-            rel="noopener noreferrer"
-            href="https://docs.livekit.io/agents"
-            className="underline underline-offset-4"
-          >
-            LiveKit Agents
-          </a>
-        </span>
+        </div>
       </header>
       {children}
     </>

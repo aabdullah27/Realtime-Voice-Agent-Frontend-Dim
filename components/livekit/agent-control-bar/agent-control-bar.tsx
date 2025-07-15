@@ -80,7 +80,7 @@ export function AgentControlBar({
     <div
       aria-label="Voice assistant controls"
       className={cn(
-        'bg-background border-bg2 dark:border-separator1 flex flex-col rounded-[31px] border p-3 drop-shadow-md/3',
+        'bg-bgAccent border-primary/20 flex flex-col rounded-3xl border p-3 shadow-lg',
         className
       )}
       {...props}
@@ -93,10 +93,9 @@ export function AgentControlBar({
             chatOpen ? 'h-[57px]' : 'h-0'
           )}
         >
-          <div className="flex h-8 w-full">
+          <div className="mb-2 flex h-8 w-full">
             <ChatInput onSend={handleSendMessage} disabled={isInputDisabled} className="w-full" />
           </div>
-          <hr className="border-bg2 my-3" />
         </div>
       )}
 
