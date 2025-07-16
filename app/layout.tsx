@@ -58,6 +58,7 @@ export default async function RootLayout({ children }: RootLayoutProps) {
         {styles && <style>{styles}</style>}
         <title>{pageTitle}</title>
         <meta name="description" content={pageDescription + '\n\nBuilt with LiveKit Agents.'} />
+        <style>{`html, body { overflow: hidden !important; height: 100vh !important; }`}</style>
         <ApplyThemeScript />
       </head>
       <body

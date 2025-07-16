@@ -21,13 +21,11 @@ import { cn } from '@/lib/utils';
 function isAgentAvailable(agentState: AgentState) {
   return agentState == 'listening' || agentState == 'thinking' || agentState == 'speaking';
 }
-
 interface SessionViewProps {
   appConfig: AppConfig;
   disabled: boolean;
   sessionStarted: boolean;
 }
-
 export const SessionView = ({
   appConfig,
   disabled,
@@ -38,13 +36,10 @@ export const SessionView = ({
   const [chatOpen, setChatOpen] = useState(false);
   const { messages, send } = useChatAndTranscription();
   const room = useRoomContext();
-
   useDebugMode();
-
   async function handleSendMessage(message: string) {
     await send(message);
   }
-
   useEffect(() => {
     if (sessionStarted) {
       const timeout = setTimeout(() => {
@@ -53,7 +48,6 @@ export const SessionView = ({
             agentState === 'connecting'
               ? 'Agent did not join the room. '
               : 'Agent connected but did not complete initializing. ';
-
           toastAlert({
             title: 'Session ended',
             description: (
@@ -74,18 +68,15 @@ export const SessionView = ({
           room.disconnect();
         }
       }, 10_000);
-
       return () => clearTimeout(timeout);
     }
   }, [agentState, sessionStarted, room]);
-
   const { supportsChatInput, supportsVideoInput, supportsScreenShare } = appConfig;
   const capabilities = {
     supportsChatInput,
     supportsVideoInput,
     supportsScreenShare,
   };
-
   return (
     <main
       ref={ref}
@@ -118,14 +109,7 @@ export const SessionView = ({
           </AnimatePresence>
         </div>
       </ChatMessageView>
-
-      <div className="mp-12 fixed top-0 right-0 left-0 h-32 md:h-36">
-        {/* skrim */}
-        <div className="from-background absolute bottom-0 left-0 h-12 w-full translate-y-full bg-gradient-to-b to-transparent" />
-      </div>
-
       <MediaTiles chatOpen={chatOpen} />
-
       <div className="fixed right-0 bottom-0 left-0 z-50 px-3 pt-2 pb-3 md:px-12 md:pb-12">
         <motion.div
           key="control-bar"
@@ -159,15 +143,12 @@ export const SessionView = ({
                 </p>
               </motion.div>
             )}
-
             <AgentControlBar
               capabilities={capabilities}
               onChatOpenChange={setChatOpen}
               onSendMessage={handleSendMessage}
             />
           </div>
-          {/* skrim */}
-          <div className="from-background border-background absolute top-0 left-0 h-12 w-full -translate-y-full bg-gradient-to-t to-transparent" />
         </motion.div>
       </div>
     </main>
