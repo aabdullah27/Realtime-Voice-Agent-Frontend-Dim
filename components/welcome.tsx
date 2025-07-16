@@ -1,4 +1,5 @@
 import { Button } from '@/components/ui/button';
+import { DimitraLogo } from './dimitra-logo';
 
 interface WelcomeProps {
   disabled: boolean;
@@ -22,28 +23,7 @@ export const Welcome = ({
         <div className="from-primary/20 absolute top-1/2 left-4 h-1/2 w-1 -translate-y-1/2 transform rounded-full bg-gradient-to-b to-transparent"></div>
         <div className="from-primary/20 absolute top-1/2 right-4 h-1/2 w-1 -translate-y-1/2 transform rounded-full bg-gradient-to-t to-transparent"></div>
         <div className="mb-10 flex flex-col items-center justify-center gap-y-4">
-          <div className="bg-primary/10 flex h-20 w-20 items-center justify-center rounded-full">
-            <div className="bg-primary/20 text-primary flex h-16 w-16 items-center justify-center rounded-full">
-              <svg
-                xmlns="http://www.w3.org/2000/svg"
-                width="32"
-                height="32"
-                viewBox="0 0 24 24"
-                fill="none"
-                stroke="currentColor"
-                strokeWidth="2"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                className="lucide lucide-brain-circuit"
-              >
-                <path d="M12 5a3 3 0 1 0-5.997.004A3 3 0 0 0 12 5zm0 0a3 3 0 1 1 5.997.004A3 3 0 0 1 12 5z" />
-                <path d="M12 15a3 3 0 1 0-5.997.004A3 3 0 0 0 12 15zm0 0a3 3 0 1 1 5.997.004A3 3 0 0 1 12 15z" />
-                <path d="M6 5h.01M18 5h.01M6 15h.01M18 15h.01" />
-                <path d="M9 8V5M15 8V5M9 19v-3m6 0v3" />
-                <path d="M9 12h6" />
-              </svg>
-            </div>
-          </div>
+
           <h2 className="animate-text-shimmer bg-clip-text text-4xl font-bold tracking-tight text-transparent">
             Customer Support
           </h2>
